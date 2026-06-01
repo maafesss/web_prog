@@ -9,7 +9,8 @@ RUN pip install --no-cache-dir \
 COPY . .
 EXPOSE 80
 
-# Запуск на порту 80
+# Запуск с подробным логированием
 CMD python manage.py makemigrations && \
     python manage.py migrate && \
-    python manage.py runserver 0.0.0.0:80
+    python -c "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@example.com', 'admin123') if not User.objects.filter(username='admin').exists() else None" && \
+    python manage.py runserver 0.0.0.0:80 --verbosity 2
