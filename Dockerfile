@@ -9,8 +9,8 @@ RUN pip install --no-cache-dir \
 COPY . .
 EXPOSE 80
 
-# Запуск с подробным логированием
+# Сначала миграции, потом создание суперпользователя через manage.py
 CMD python manage.py makemigrations && \
     python manage.py migrate && \
-    python -c "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@example.com', 'admin123') if not User.objects.filter(username='admin').exists() else None" && \
+    python manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@example.com', 'admin123') if not User.objects.filter(username='admin').exists() else None" && \
     python manage.py runserver 0.0.0.0:80 --verbosity 2
