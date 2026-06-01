@@ -1,0 +1,18 @@
+Index: main/views.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main/views.py b/main/views.py
+--- a/main/views.py	
++++ b/main/views.py	(date 1745880926008)
+@@ -22,9 +22,6 @@
+         email = request.POST.get('email')
+         message = request.POST.get('message')
+ 
+-        # Сохранение в БД
+-        Feedback.objects.create(name=name, email=email, message=message)
+-
+         # Отправка в Telegram
+         bot_token = os.getenv('TELEGRAM_BOT_TOKEN')
+         chat_id = os.getenv('TELEGRAM_CHAT_ID')

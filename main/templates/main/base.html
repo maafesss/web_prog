@@ -1,0 +1,53 @@
+{% load static %}
+<html>
+<head>
+    <title>NEONDRIVE // Cybercars 2077</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto+Mono&display=swap" rel="stylesheet">
+</head>
+
+<body class="cyber-bg">
+    <nav class="fixed-menu cyber-glow">
+        <a href="{% url 'home' %}" class="neon-link">ГЛАВНАЯ</a>
+        <a href="{% url 'feedback' %}" class="neon-link">ОБРАТНАЯ СВЯЗЬ</a>
+
+    {% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="POST" class="logout-form">
+            {% csrf_token %}
+            <button type="submit" class="neon-link exit-btn">
+                [ ВЫХОД: {{ user.username }} ]
+            </button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}" class="neon-link">ВОЙТИ</a>
+    {% endif %}
+    </nav>
+    <div class="cyber-container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div class="matrix-effect"></div>
+    <script>
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                const inputs = this.querySelectorAll('input');
+                inputs.forEach(input => {
+                    if(input.hasAttribute('pattern') && !new RegExp(input.pattern).test(input.value)) {
+                        input.style.borderColor = '#ff0000';
+                        e.preventDefault();
+                    }
+                });
+            });
+        });
+        setInterval(() => {
+            document.querySelectorAll('.username-glitch').forEach(element => {
+                element.style.textShadow = `
+                    ${Math.random() * 5}px ${Math.random() * 5}px #ff00ff,
+                    ${Math.random() * -5}px ${Math.random() * -5}px #00ffff
+                `;
+            });
+        }, 100);
+    </script>
+</body>
+</html>

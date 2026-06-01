@@ -1,0 +1,235 @@
+/* Основные стили */
+.cyber-bg {
+    background: #0a0a0a;
+    color: #00f3ff;
+    font-family: 'Roboto Mono', monospace;
+    margin: 0;
+    padding-top: 80px;
+}
+
+.cyber-title {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ff00;
+    text-shadow: 0 0 15px #00ff00;
+    text-align: center;
+    font-size: 3em;
+    margin: 40px 0;
+}
+
+/* Фиксированное меню */
+.fixed-menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    border-bottom: 2px solid #00f3ff;
+    z-index: 1000;
+}
+
+.neon-link {
+    color: #00f3ff;
+    margin: 0 30px;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: 0.3s;
+}
+
+.neon-link:hover {
+    color: #00ff00;
+    text-shadow: 0 0 10px #00ff00;
+}
+
+/* Слайд-шоу */
+.cyber-carousel {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 50px 0;
+}
+
+.glow {
+    border: 3px solid #00f3ff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00f3ff;
+    width: 600px;
+    transition: transform 0.4s;
+}
+
+.glow:hover {
+    transform: scale(1.05);
+}
+
+/* Список характеристик */
+.cyber-list {
+    border: 2px solid #00ff00;
+    padding: 25px;
+    margin: 40px auto;
+    width: 70%;
+    background: rgba(0, 255, 0, 0.05);
+}
+
+.cyber-list li {
+    margin: 15px 0;
+    list-style-type: "▹ ";
+    font-size: 1.1em;
+}
+
+/* Анимация "цифрового дождя" */
+.matrix-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 243, 255, 0.1) 0px,
+        rgba(0, 243, 255, 0.1) 1px,
+        transparent 1px,
+        transparent 20px
+    );
+    pointer-events: none;
+    z-index: -1;
+    animation: matrix 50s linear infinite;
+}
+/* Стили списка машин */
+.car-list {
+    margin: 40px auto;
+    width: 80%;
+}
+
+.car-item {
+    margin: 50px 0;
+    padding: 25px;
+    border: 2px solid #00f3ff;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+}
+
+.car-name {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ff00;
+    text-shadow: 0 0 15px #00ff00;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.car-image {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    display: block;
+}
+
+.cyber-features {
+    padding: 20px;
+    border: 1px solid #00ff00;
+    margin-top: 30px;
+    background: rgba(0, 255, 0, 0.05);
+}
+
+.cyber-features h3 {
+    color: #00f3ff;
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 15px;
+}
+
+.cyber-features li {
+    margin: 10px 0;
+    list-style-type: "▹ ";
+    color: #00f3ff;
+}
+
+/* Анимация для блоков */
+.car-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/*ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd*/
+
+/* Стили формы (дополнение) */
+.cyber-form {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 2px solid #00f3ff;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.form-group {
+    margin: 25px 0;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    background: #0a0a0a;
+    border: 1px solid #00f3ff;
+    color: #00ff00;
+    font-family: 'Orbitron', sans-serif;
+}
+
+input:valid {
+    border-color: #00ff00;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+input:invalid {
+    border-color: #ff0000;
+    box-shadow: 0 0 10px #ff0000;
+}
+
+.error-message {
+    display: none;
+    color: #ff0000;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+input:invalid + .error-message {
+    display: block;
+}
+
+/* Стили для формы обратной связи */
+textarea {
+    width: 100%;
+    padding: 12px;
+    background: #0a0a0a;
+    border: 1px solid #00f3ff;
+    color: #00ff00;
+    font-family: 'Orbitron', sans-serif;
+    resize: vertical;
+}
+
+@keyframes matrix {
+    from { background-position: 0 0; }
+    to { background-position: 0 1000px; }
+}
+.like-system {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.cyber-button.liked {
+    border-color: #006b1b;
+    color: #006b1b;
+    box-shadow: 0 0 15px rgba(25, 255, 0, 0.5);
+}
+
+
+.login-to-vote {
+    color: #f00;
+    text-shadow: 0 0 10px #f00;
+    font-size: 0.9em;
+}

@@ -1,0 +1,41 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="cyber-container">
+    <h1 class="cyber-title">РЕГИСТРАЦИЯ</h1>
+    
+    {% if form.errors %}
+    <div class="cyber-error">
+        {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+                {{ error }}<br>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="post" class="cyber-form">
+        {% csrf_token %}
+        
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.help_text %}
+                <small class="form-help">{{ field.help_text }}</small>
+                {% endif %}
+                {% if field.errors %}
+                <span class="error-message">{{ field.errors.0 }}</span>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="cyber-button">СОЗДАТЬ АККАУНТ →</button>
+    </form>
+    
+    <div class="auth-links">
+        <a href="{% url 'login' %}" class="cyber-link">Уже есть аккаунт? Войти</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+services:
+  web:
+    build: .
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://neondriver:neondriver@db:5432/neondriver
+      ALLOWED_HOSTS: localhost,127.0.0.1
+      DEBUG: "True"
+      REDIS_URL: ""
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: neondriver
+      POSTGRES_USER: neondriver
+      POSTGRES_PASSWORD: neondriver
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:

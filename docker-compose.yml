@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+  web:
+    # Сборка web-образа из локального Dockerfile.
+    build: .
+    # Команда запуска веб-сервера внутри контейнера.
+    command: gunicorn --bind 0.0.0.0:8000 NeonDrive.wsgi:application
+    volumes:
+      # Монтируем проект в контейнер для удобной разработки.
+      - .:/app
+      # Отдельный volume для собранной статики.
+      - static_volume:/app/staticfiles
+    ports:
+      # Проброс порта: хост 8000 -> контейнер 8000.
+      - "8000:8000"
+    env_file:
+      # Переменные окружения Django (DATABASE_URL, SECRET_KEY и т.д.).
+      - .env
+    depends_on:
+      # web стартует после db (но это не гарантирует готовность БД к запросам).
+      - db
+
+  db:
+    # Легковесный PostgreSQL-контейнер.
+    image: postgres:13-alpine
+    volumes:
+      # Данные БД сохраняются между перезапусками контейнера.
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      # Значения берутся из окружения/файла .env.
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+volumes:
+  # Постоянное хранилище PostgreSQL.
+  postgres_data:
+  # Постоянное хранилище собранной статики.
+  static_volume:
