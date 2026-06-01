@@ -33,7 +33,10 @@ if 'localhost' in DATABASE_URL and os.environ.get('DOCKER_ENV') == 'true':
     print(f"🔄 Docker environment detected, changed DATABASE_URL to: {DATABASE_URL}")
 
 DATABASES = {
-    'default': dj_database_url.parse(DATABASE_URL)
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 if not DATABASES['default'].get('PORT'):
