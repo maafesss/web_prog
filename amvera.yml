@@ -16,3 +16,4 @@ services:
     env:
       DEBUG: "False"
       ALLOWED_HOSTS: "localhost,127.0.0.1,.amvera.ru,.amvera.io"
+      DATABASE_URL: ""

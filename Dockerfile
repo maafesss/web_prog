@@ -9,7 +9,8 @@ RUN pip install --no-cache-dir \
 COPY . .
 EXPOSE 8000
 
-# Автоматические миграции при запуске
-CMD python manage.py makemigrations && \
+# Удаляем старую БД если есть и запускаем миграции
+CMD rm -f db.sqlite3 && \
+    python manage.py makemigrations && \
     python manage.py migrate && \
     python manage.py runserver 0.0.0.0:8000
