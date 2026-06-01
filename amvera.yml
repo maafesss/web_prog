@@ -1,5 +1,7 @@
 meta:
   version: 1.0
+  toolchain:
+    type: docker
 
 services:
   web:
