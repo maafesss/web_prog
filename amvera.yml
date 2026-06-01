@@ -1,6 +1,7 @@
 meta:
   version: 1.0
   toolchain:
+    name: docker
     type: docker
 
 services:
@@ -12,10 +13,8 @@ services:
     ports:
       - 8000
     env:
-      DATABASE_URL: "postgresql://neondriver:neondriver@db:5432/neondriver"
-      ALLOWED_HOSTS: "localhost,127.0.0.1,.amvera.ru,.amvera.io"
       DEBUG: "False"
-      REDIS_URL: ""
+      ALLOWED_HOSTS: "localhost,127.0.0.1,.amvera.ru,.amvera.io"
 
   db:
     image: postgres:16
