@@ -1,5 +1,6 @@
 meta:
   version: 1.0
+  environment: python
   toolchain:
     name: docker
     type: docker
@@ -15,14 +16,3 @@ services:
     env:
       DEBUG: "False"
       ALLOWED_HOSTS: "localhost,127.0.0.1,.amvera.ru,.amvera.io"
-
-  db:
-    image: postgres:16
-    env:
-      POSTGRES_DB: neondriver
-      POSTGRES_USER: neondriver
-      POSTGRES_PASSWORD: neondriver
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - 5432
