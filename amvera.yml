@@ -1,0 +1,25 @@
+version: 1.0
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000
+    env:
+      DATABASE_URL: "postgresql://neondriver:neondriver@db:5432/neondriver"
+      ALLOWED_HOSTS: "localhost,127.0.0.1,.amvera.ru"
+      DEBUG: "False"
+      REDIS_URL: ""
+
+  db:
+    image: postgres:16
+    env:
+      POSTGRES_DB: neondriver
+      POSTGRES_USER: neondriver
+      POSTGRES_PASSWORD: neondriver
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432
