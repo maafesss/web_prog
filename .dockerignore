@@ -1,6 +1,7 @@
-.git
-.venv
-.env
-*.pyc
 __pycache__
-staticfiles
+*.pyc
+*.sqlite3
+.env
+.git
+venv
+packages

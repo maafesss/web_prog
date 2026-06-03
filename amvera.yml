@@ -7,7 +7,6 @@ meta:
 
 services:
   web:
-    image: python:3.11-slim
     build:
       context: .
       dockerfile: Dockerfile
